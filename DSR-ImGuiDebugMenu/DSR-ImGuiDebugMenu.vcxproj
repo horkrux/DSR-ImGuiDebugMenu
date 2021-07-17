@@ -227,6 +227,7 @@
     <MASM Include="_EsdDbgLogOutput.asm">
       <FileType>Document</FileType>
     </MASM>
+    <MASM Include="_FreeCam.asm" />
     <MASM Include="_LoadMsbNames.asm">
       <FileType>Document</FileType>
     </MASM>

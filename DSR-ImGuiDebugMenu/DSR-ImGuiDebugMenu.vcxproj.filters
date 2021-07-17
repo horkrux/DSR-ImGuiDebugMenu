@@ -214,5 +214,8 @@
     <MASM Include="_DbgMenuAdditions.asm">
       <Filter>Source Files</Filter>
     </MASM>
+    <MASM Include="_FreeCam.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
 </Project>

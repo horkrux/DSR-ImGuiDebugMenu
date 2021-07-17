@@ -97,3 +97,20 @@ extern "C" VOID fAddUnderConstructionParamMan();
 extern "C" DWORD64 bAddUnderConstructionEmevdMan;
 extern "C" VOID fAddUnderConstructionEmevdMan();
 
+extern "C" DWORD64 bFreeCam;
+extern "C" DWORD64 bGetFreeCamMode1;
+extern "C" DWORD64 bGetFreeCamMode2;
+extern "C" DWORD64 bGetFreeCamMode3;
+extern "C" DWORD64 bGetFreeCamMode4;
+extern "C" VOID fFreeCam();
+extern "C" VOID tGetFreeCamMode1();
+extern "C" VOID tGetFreeCamMode2();
+extern "C" VOID tGetFreeCamMode3();
+extern "C" VOID tGetFreeCamMode4();
+
+extern "C" DWORD64 bExitButtonComboCheck1;
+extern "C" DWORD64 bExitButtonComboCheck2;
+extern "C" DWORD64 bExitButtonComboCheck3;
+extern "C" VOID tExitButtonComboCheck1();
+extern "C" VOID tExitButtonComboCheck2();
+extern "C" VOID tExitButtonComboCheck3();

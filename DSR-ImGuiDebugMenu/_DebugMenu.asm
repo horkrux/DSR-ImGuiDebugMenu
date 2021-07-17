@@ -4,6 +4,9 @@ EXTERN bOpenLogConsole:QWORD
 EXTERN fDisableDebugMemHook:QWORD
 EXTERN textHighlightColor:DWORD
 EXTERN g_isOpenConsole:BYTE
+EXTERN bExitButtonComboCheck1:QWORD
+EXTERN bExitButtonComboCheck2:QWORD
+EXTERN bExitButtonComboCheck3:QWORD
 
 .data
 	AllocDebugMem QWORD 1401687F0h
@@ -16,39 +19,42 @@ EXTERN g_isOpenConsole:BYTE
 
 fDebugMemAlloc PROC
 	call AllocDebugMem
-	push rax
-	push rbx
 	push rcx
-	mov ebx, 200000h
-	mov rax, [DebugMemAddress1]
-	mov [rax], ebx
-	mov rax, [DebugMemAddress2]
-	mov [rax], ebx
-	mov rax, [DebugMemAddress3]
-	mov [rax], ebx
-	mov rax, [AllocDebugMemAddress]
-	lea rbx, origBytes
-	mov cl, [rbx]
-	mov [rax], cl
-	inc rax
-	inc rbx
-	mov cl, [rbx]
-	mov [rax], cl
-	inc rax
-	inc rbx
-	mov cl, [rbx]
-	mov [rax], cl
-	inc rax
-	inc rbx
-	mov cl, [rbx]
-	mov [rax], cl
-	inc rax
-	inc rbx
-	mov cl, [rbx]
-	mov [rax], cl
+	push rsi
+	push rdi
+	mov ecx, 200000h
+	mov rdi, [DebugMemAddress1]
+	mov [rdi], ecx
+	mov rdi, [DebugMemAddress2]
+	mov [rdi], ecx
+	mov rdi, [DebugMemAddress3]
+	mov [rdi], ecx
+	;mov rax, [AllocDebugMemAddress]
+	lea rsi, origBytes
+	mov rdi, [AllocDebugMemAddress]
+	mov ecx, 5
+	rep movsb
+	;mov cl, [rbx]
+	;mov [rax], cl
+	;inc rax
+	;inc rbx
+	;mov cl, [rbx]
+	;mov [rax], cl
+	;inc rax
+	;inc rbx
+	;mov cl, [rbx]
+	;mov [rax], cl
+	;inc rax
+	;inc rbx
+	;mov cl, [rbx]
+	;mov [rax], cl
+	;inc rax
+	;inc rbx
+	;mov cl, [rbx]
+	;mov [rax], cl
+	pop rdi
+	pop rsi
 	pop rcx
-	pop rbx
-	pop rax
 	;call fDisableDebugMemHook
 	jmp [bDebugMemAlloc]
 fDebugMemAlloc ENDP
@@ -2101,5 +2107,47 @@ fOpenLogConsole PROC
 	mov rcx, [r9+17F0h]
 	jmp [bOpenLogConsole]
 fOpenLogConsole ENDP
+
+.data
+	getPadDevice QWORD 1401ADBA0h
+	checkButton QWORD 1401A43B0h
+.code
+
+tExitButtonComboCheck1 PROC
+	call fExitButtonComboCheck
+	jmp bExitButtonComboCheck1
+tExitButtonComboCheck1 ENDP
+
+tExitButtonComboCheck2 PROC
+	call fExitButtonComboCheck
+	jmp bExitButtonComboCheck2
+tExitButtonComboCheck2 ENDP
+
+tExitButtonComboCheck3 PROC
+	call fExitButtonComboCheck
+	jmp bExitButtonComboCheck3
+tExitButtonComboCheck3 ENDP
+
+fExitButtonComboCheck PROC
+	push rbx
+	push rcx
+	push rdx
+	xor ecx, ecx
+	call getPadDevice
+	mov rbx, rax
+	mov rcx, rbx
+	mov edx, 39h
+	call checkButton
+	test al, al
+	je finish
+	mov rcx, rbx
+	mov edx, 3Ah
+	call checkButton
+finish:
+	pop rdx
+	pop rcx
+	pop rbx
+	ret
+fExitButtonComboCheck ENDP
 
 END

@@ -1,4 +1,4 @@
-DSR DEBUG MENU v1.0
+DSR DEBUG MENU v1.2
 
 DESCRIPTION
 -------------
@@ -8,6 +8,7 @@ to make modding the game more pleasant:
 *Debug output console (LUA/ESD)
 *Debug Dash movement (Fast speed, Noclip, No gravity)
 *Debug config (game.properties)
+*Debug Camera (FreeCam), coming with a number of different modes
 
 HOW TO INSTALL/DELETE
 -------------
@@ -27,27 +28,36 @@ each character separately (GAME->CHR INS->WORLD CHR MAN->(Chr entry)->Action->De
 The original ESD function for printing was enhanced to support formatted strings.
 
 Debug Menu Controls:
-SELECT: 		Open Debug Menu
+SELECT: 			Open Debug Menu
 R1 + R2 + L1: 		Open New Window
-R1 + DPAD: 		Move to Next Parent Node
+R1 + DPAD: 			Move to Next Parent Node
 R1 + L STICK: 		Move Window
-R1 + L2: 		Move to Previous Window
-R1 + L1: 		Move to Next Window
+R1 + L2: 			Move to Previous Window
+R1 + L1: 			Move to Next Window
 R1 + R2 + L2: 		Close Window
 R1 + R2 + R STICK: 	Scale Window
 R1 + R2 + L STICK:	Change Number of Lines Displayed
 
 Gameplay Controls:
 R1 + R2 + L2:		Open Gesture Menu
-L3:			Activate Debug Dash
+L3:					Activate Debug Dash
+A (Hold) + L3:		Activate Debug Camera
+
+Debug Cam Controls:
+X:					Advance Time by One Step (when frozen)
+A + L3:				Cycle Through Debug Camera modes/Deactivate Debug Camera
+R2:					Ascend
+L2:					Descend
+L1 (Hold):			Slow Down
+R1 (Hold):			Speed Up
 
 Debug Dash Controls:
-L3:			Deactivate Debug Dash
-L2:			Go Up
-L1:			Go Down
-R2 (Hold):		No Clip
+L3:					Deactivate Debug Dash
+L2:					Go Up
+L1:					Go Down
+R2 (Hold):			No Clip
 
 CREDITS
 -------------
-Thanks to wulf2k for parts of the restoration code (which motivated me to take it further lol), 
-and Meowmaritus and r3sus for providing SO much feedback
+Thanks to wulf2k for parts of the restoration code (which motivated me to take it further lol), Meowmaritus for the freecam code
+and him and r3sus for providing SO much feedback
