@@ -14,7 +14,7 @@ getPadDevice QWORD 1401ADBA0h
 checkButton QWORD 1401A43B0h
 
 .code
-
+;rsi = MoveMapStep
 fFreeCam PROC
 	push rbx
 	push rcx
@@ -50,7 +50,7 @@ pastCheck:
 	mov ecx, [freeCamMode]
 	mov rdx, [pHgMan]
 	mov rdx, [rdx]
-	mov rdx, [rdx+738h]
+	mov rdx, [rdx+738h] ;GameRend
 	mov [rdx+328h], rcx
 	cmp ecx, 1
 	je freeCamMode1
@@ -59,8 +59,8 @@ pastCheck:
 	cmp ecx, 3
 	je freeCamMode3
 freeCamMode0:
-	mov r8, [rdx+330h]
-	mov r9, [rdx+20h]
+	mov r8, [rdx+330h] ;DbgCamera
+	mov r9, [rdx+20h] ;FrpgPersCam
 	movaps xmm0, [r9+10h]
 	movaps [r8+10h], xmm0
 	movaps xmm0, [r9+20h]

@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -145,6 +145,7 @@
       <PreprocessorDefinitions>NDEBUG;DSRIMGUIDEBUGMENU_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,34 +153,17 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>dinput8.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>dinput8/dinput8.def</ModuleDefinitionFile>
       <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AddressLookupTable.h" />
-    <ClInclude Include="d3d11hook.h" />
     <ClInclude Include="DbgSettings.h" />
-    <ClInclude Include="dinput8.h" />
+    <ClInclude Include="dinput8\dinput.h" />
+    <ClInclude Include="dinput8\dinputWrapper.h" />
+    <ClInclude Include="DSRDebugMenu.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="IClassFactory.h" />
-    <ClInclude Include="IDirectInput8A.h" />
-    <ClInclude Include="IDirectInput8W.h" />
-    <ClInclude Include="IDirectInputDevice8A.h" />
-    <ClInclude Include="IDirectInputDevice8W.h" />
-    <ClInclude Include="IDirectInputEffect.h" />
-    <ClInclude Include="IDirectInputEnumDevice.h" />
-    <ClInclude Include="IDirectInputEnumEffect.h" />
-    <ClInclude Include="ImGui\imconfig.h" />
-    <ClInclude Include="ImGui\imgui.h" />
-    <ClInclude Include="ImGui\imgui_internal.h" />
-    <ClInclude Include="ImGui\imstb_rectpack.h" />
-    <ClInclude Include="ImGui\imstb_textedit.h" />
-    <ClInclude Include="ImGui\imstb_truetype.h" />
-    <ClInclude Include="imgui_impl_dx11.h" />
-    <ClInclude Include="InputHook.h" />
-    <ClInclude Include="Menu.h" />
     <ClInclude Include="MinHook\include\MinHook.h" />
     <ClInclude Include="MinHook\src\buffer.h" />
     <ClInclude Include="MinHook\src\HDE\hde32.h" />
@@ -191,24 +175,8 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="d3d11hook.cpp" />
+    <ClCompile Include="dinput8\dinputWrapper.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="IClassFactory.cpp" />
-    <ClCompile Include="IDirectInput8A.cpp" />
-    <ClCompile Include="IDirectInput8W.cpp" />
-    <ClCompile Include="IDirectInputDevice8A.cpp" />
-    <ClCompile Include="IDirectInputDevice8W.cpp" />
-    <ClCompile Include="IDirectInputEffect.cpp" />
-    <ClCompile Include="IDirectInputEnumDevice.cpp" />
-    <ClCompile Include="IDirectInputEnumEffect.cpp" />
-    <ClCompile Include="ImGui\imgui.cpp" />
-    <ClCompile Include="ImGui\imgui_demo.cpp" />
-    <ClCompile Include="ImGui\imgui_draw.cpp" />
-    <ClCompile Include="ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="imgui_impl_dx11.cpp" />
-    <ClCompile Include="InputHook.cpp" />
-    <ClCompile Include="InterfaceQuery.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MinHook\src\buffer.c" />
     <ClCompile Include="MinHook\src\HDE\hde32.c" />
     <ClCompile Include="MinHook\src\HDE\hde64.c" />
@@ -228,9 +196,14 @@
       <FileType>Document</FileType>
     </MASM>
     <MASM Include="_FreeCam.asm" />
+    <MASM Include="_GamePatcher.asm" />
+    <MASM Include="_GameProperties.asm" />
     <MASM Include="_LoadMsbNames.asm">
       <FileType>Document</FileType>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dinput8\dinput8.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

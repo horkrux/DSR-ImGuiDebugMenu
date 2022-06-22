@@ -1,12 +1,11 @@
 EXTERN bDrawDebugMenuGOGOGO:QWORD
-EXTERN bDebugMemAlloc:QWORD
 EXTERN bOpenLogConsole:QWORD
-EXTERN fDisableDebugMemHook:QWORD
 EXTERN textHighlightColor:DWORD
 EXTERN g_isOpenConsole:BYTE
 EXTERN bExitButtonComboCheck1:QWORD
 EXTERN bExitButtonComboCheck2:QWORD
 EXTERN bExitButtonComboCheck3:QWORD
+EXTERN rootString:QWORD
 
 .data
 	AllocDebugMem QWORD 1401687F0h
@@ -17,47 +16,6 @@ EXTERN bExitButtonComboCheck3:QWORD
 	origBytes BYTE 0E8h, 0D0h, 022h, 0FFh, 0FFh
 .code
 
-fDebugMemAlloc PROC
-	call AllocDebugMem
-	push rcx
-	push rsi
-	push rdi
-	mov ecx, 200000h
-	mov rdi, [DebugMemAddress1]
-	mov [rdi], ecx
-	mov rdi, [DebugMemAddress2]
-	mov [rdi], ecx
-	mov rdi, [DebugMemAddress3]
-	mov [rdi], ecx
-	;mov rax, [AllocDebugMemAddress]
-	lea rsi, origBytes
-	mov rdi, [AllocDebugMemAddress]
-	mov ecx, 5
-	rep movsb
-	;mov cl, [rbx]
-	;mov [rax], cl
-	;inc rax
-	;inc rbx
-	;mov cl, [rbx]
-	;mov [rax], cl
-	;inc rax
-	;inc rbx
-	;mov cl, [rbx]
-	;mov [rax], cl
-	;inc rax
-	;inc rbx
-	;mov cl, [rbx]
-	;mov [rax], cl
-	;inc rax
-	;inc rbx
-	;mov cl, [rbx]
-	;mov [rax], cl
-	pop rdi
-	pop rsi
-	pop rcx
-	;call fDisableDebugMemHook
-	jmp [bDebugMemAlloc]
-fDebugMemAlloc ENDP
 
 .data
 	pDbgMenuMan QWORD 141C04CC8h
@@ -90,14 +48,16 @@ tDrawDebugMenuGOGOGO ENDP
 	timeStepValue DWORD 3C888889h
 	dbgMenuCtrl QWORD 0
 	windowCount DWORD 0
+	GetAsyncKeyState QWORD 1420B59E0h
 .code
 
 fDrawDebugMenuGOGOGO PROC
-	sub rsp, 8
+	;sub rsp, 28h
 	push rbx
 	push rbp
 	push rsi
 	push rdi
+	sub rsp, 28h
 	mov rsi, pDbgMenuMan
 	mov rsi, [rsi]
 	cmp qword ptr [rsi+8], 0
@@ -349,11 +309,12 @@ loc_F97074:
 	test rdi, rdi
 	jne loopstart
 nonode:
+	add rsp, 28h
 	pop rdi
 	pop rsi
 	pop rbp
 	pop rbx
-	add rsp, 8
+	;add rsp, 28h
 	ret
 
 fDrawDebugMenuGOGOGO ENDP
@@ -378,6 +339,8 @@ fDrawDebugMenu PROC
 	push r15
 	lea rbp, [rsp-27h]
 	sub rsp, 90h
+	;mov rax, 0					;REMOVE LATER
+	;mov rax, [rax]				;
 	mov qword ptr [rbp-21h], -2
 	mov [rsp+0E0h], rbx
 	movzx r13d, r8b
@@ -758,7 +721,7 @@ loc_142334C64:
 	je loc_142334CA5
 	;mov edx, 0FFC0FF80h
 	mov edx, [textHighlightColor]
-	call qword ptr [rax+28h]
+	call qword ptr [rax+28h]	;changeEzDrawStateColor
 	mov rax, [rdi]
 	mov rcx, rdi
 	call qword ptr [rax+40h]
@@ -1453,7 +1416,46 @@ loc_142334716:
 	mov eax, [r14+1Ch]
 	shr eax, 0Ch
 	test al, 1
-	je loc_142334761
+	je shitto
+	jmp continueAsNormal
+shitto:
+	sub rsp, 60h
+	push rax
+	push rbx
+	push rcx
+	push rdx
+	push r8
+	push r9
+	push r10
+	push r11
+	mov rcx, 0Dh
+	mov rax, GetAsyncKeyState
+	mov rax, [rax]
+	call rax
+	test ax, 8001h
+	jne pressedA
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop rdx
+	pop rcx
+	pop rbx
+	pop rax
+	add rsp, 60h
+	jmp loc_142334761
+pressedA:
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop rdx
+	pop rcx
+	pop rbx
+	pop rax
+	add rsp, 60h
+	;je loc_142334761
+continueAsNormal:
 	mov rax, [rdi]
 	mov edx, r12d
 	mov rcx, rdi
@@ -2149,5 +2151,16 @@ finish:
 	pop rbx
 	ret
 fExitButtonComboCheck ENDP
+
+fInitRootDbgMenuLabelNode PROC
+	lea rcx, [rootString]
+	mov rax, 140466AA0h
+	call rax
+	mov rcx, [pDbgMenuMan]
+	mov rcx, [rcx]
+	mov [rcx+8], rax
+	add rsp, 28h
+	ret
+fInitRootDbgMenuLabelNode ENDP
 
 END

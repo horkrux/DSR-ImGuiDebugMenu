@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ImGui">
-      <UniqueIdentifier>{f2003d7f-58ff-45d3-a350-5dedc54155cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MinHook">
       <UniqueIdentifier>{abb81056-ae28-482f-bc7b-83dc3b12cb58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dinput8">
+      <UniqueIdentifier>{ae913a9e-356f-4dc2-8082-9d0a02c49b75}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,73 +48,22 @@
     <ClInclude Include="MinHook\src\HDE\table64.h">
       <Filter>MinHook</Filter>
     </ClInclude>
-    <ClInclude Include="AddressLookupTable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dinput8.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IClassFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDirectInput8A.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDirectInput8W.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDirectInputDevice8A.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDirectInputDevice8W.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDirectInputEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDirectInputEnumDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDirectInputEnumEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGui\imconfig.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGui\imgui.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGui\imgui_internal.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGui\imstb_rectpack.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGui\imstb_textedit.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGui\imstb_truetype.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="d3d11hook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui_impl_dx11.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DbgSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dinput8\dinput.h">
+      <Filter>dinput8</Filter>
+    </ClInclude>
+    <ClInclude Include="dinput8\dinputWrapper.h">
+      <Filter>dinput8</Filter>
+    </ClInclude>
+    <ClInclude Include="DSRDebugMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -137,56 +86,8 @@
     <ClCompile Include="MinHook\src\HDE\hde64.c">
       <Filter>MinHook</Filter>
     </ClCompile>
-    <ClCompile Include="IClassFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDirectInput8A.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDirectInput8W.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDirectInputDevice8A.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDirectInputDevice8W.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDirectInputEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDirectInputEnumDevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDirectInputEnumEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InterfaceQuery.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="d3d11hook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_impl_dx11.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="dinput8\dinputWrapper.cpp">
+      <Filter>dinput8</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,5 +118,16 @@
     <MASM Include="_FreeCam.asm">
       <Filter>Source Files</Filter>
     </MASM>
+    <MASM Include="_GameProperties.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="_GamePatcher.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dinput8\dinput8.def">
+      <Filter>dinput8</Filter>
+    </None>
   </ItemGroup>
 </Project>

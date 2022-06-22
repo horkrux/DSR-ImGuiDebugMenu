@@ -54,11 +54,11 @@ fRemoAddTest ENDP
 
 .data
 	makeDbgMenuEmevdActionNode QWORD 1407C3EF0h
-	underConstructionStr WORD 2517h, 28h, 0FF3Eh, 30h, 0FF3Eh, 29h, 2513h, 20h, 55h, 6Eh, 64h, 65h, 72h, 20h, 43h, 6Fh, 6Eh, 73h, 74h, 72h, 75h, 63h, 74h, 69h, 6Fh, 6Eh, 20h, 2517h, 28h, 0FF3Eh, 30h, 0FF3Eh, 29h, 2513h, 0
+	customNodeStr WORD 0AFh, 5Ch, 5Fh, 28h, 30C4h, 29h, 5Fh, 2Fh, 0AFh, 0
 .code
 
 fAddUnderConstructionParamMan PROC
-	lea rdx, [underConstructionStr]
+	lea rdx, [customNodeStr]
 	mov rcx, rbx
 	call makeDbgMenuStaticLabel
 	mov rax, [r14]
@@ -69,7 +69,7 @@ fAddUnderConstructionParamMan ENDP
 fAddUnderConstructionEmevdMan PROC
 	mov rcx, rdi
 	mov rbx, rdx
-	lea rdx, [underConstructionStr]
+	lea rdx, [customNodeStr]
 	call makeDbgMenuStaticLabel
 	mov rdx, rbx
 	mov rbx, 0AAAAAAAAAAAAAAABh
